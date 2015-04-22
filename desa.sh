@@ -1,23 +1,30 @@
 #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
 
-# Entorno Desarrollo PHP MySQL v 0.1
+# Entorno Desarrollo PHP MySQL v 0.1.1
 # Ubuntu 14.04 LTS
 # 
 # @author       Jamie Ynoñan <jamiea31@gmail.com>
 # @link         https://github.com/JamieYnonan
+# @version		0.1.1 - 2015-04-22
 
 
 function inicio() {
     echo -n " ¿Desea iniciar? (s)i|(c)ancelar: "; read resp
     if [ "$resp" == "s" ]; then
+		nspleep
         actualizar_ubuntu
+		nspleep
         instalar_extras
+		nspleep
         instalar_zip_rar
+		nspleep
         instalar_entorno_php
+		nspleep
         instalar_composer
+		nspleep
         instalar_java
-        echo " "
+		nspleep
         echo -n " Fin! "
         echo " "
         exit;
@@ -67,8 +74,8 @@ function instalar_entorno_php() {
     sudo apt-get install mysql-server mysql-client -y
     sudo apt-get install php5-mysql php5-curl php5-gd php-pear php5-imagick php5-mcrypt php5-memcache php5-sqlite -y
     sudo service apache2 restart
-    a2enmod rewrite
-    service apache2 restart
+    sudo a2enmod rewrite
+    sudo service apache2 restart
     echo " "
     echo -n " Instalado! "
 }
@@ -89,6 +96,11 @@ function instalar_java() {
     sudo apt-get install openjdk-7-jdk -y
     echo " "
     echo -n " Instalado!" 
+}
+
+function nspleep() {
+	echo " "
+	sleep(2)
 }
 
 inicio
