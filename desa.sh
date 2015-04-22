@@ -100,7 +100,7 @@ function instalar_java() {
 
 function nspleep() {
 	echo " "
-	sleep(2)
+	sleep 2
 }
 
 inicio
