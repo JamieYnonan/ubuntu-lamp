@@ -1,12 +1,12 @@
 #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
 
-# Entorno Desarrollo PHP MySQL v 0.1.1
+# Entorno Desarrollo PHP MySQL
 # Ubuntu 14.04 LTS
 # 
 # @author       Jamie Ynoñan <jamiea31@gmail.com>
 # @link         https://github.com/JamieYnonan
-# @version		0.1.1 - 2015-04-22
+# @version		0.1.3 - 2015-04-23
 
 
 function inicio() {
@@ -36,7 +36,6 @@ function inicio() {
 }
 
 function actualizar_ubuntu() {
-    echo " "
     echo -n " 1. Actualizando Ubuntu "
     sudo apt-get update
     sudo apt-get upgrade -y
@@ -45,7 +44,6 @@ function actualizar_ubuntu() {
 }
 
 function instalar_extras() {
-    echo " "
     echo -n " 2. Instalando extras restringidos "
     sudo apt-get install ubuntu-restricted-extras -y
     echo " "
@@ -53,7 +51,6 @@ function instalar_extras() {
 }
 
 function instalar_zip_rar() {
-    echo " "
     echo -n " 3. Instalando programas para zip y rar "
     sudo apt-get install p7zip-full p7zip-rar rar unrar -y
     echo " "
@@ -61,7 +58,6 @@ function instalar_zip_rar() {
 }
 
 function instalar_entorno_php() {
-    echo " "
     echo -n " 4. Instalando apache php mysql "
     sudo apt-get curl -y
     sudo apt-get install apache2 -y
@@ -81,7 +77,6 @@ function instalar_entorno_php() {
 }
 
 function instalar_composer() {
-    echo " "
     echo -n " 4. Instalando apache php mysql "
     curl -sS https://getcomposer.org/installer | php
     sudo mv composer.phar /usr/local/bin/composer
@@ -90,7 +85,6 @@ function instalar_composer() {
 }
 
 function instalar_java() {
-    echo " "
     echo -n " 4. Instalando apache php mysql "
     sudo apt-get install icedtea-7-plugin openjdk-7-jre -y
     sudo apt-get install openjdk-7-jdk -y
