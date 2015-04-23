@@ -72,7 +72,7 @@ function instalar_entorno_php() {
     sudo chown -R $usuario:www-data /var/www/html
     sudo chmod -R 755 /var/www/html
     sudo apt-get install mysql-server mysql-client -y
-    sudo apt-get install php5-mysql php5-curl php5-gd php-pear php5-imagick php5-mcrypt php5-memcache php5-sqlite -y
+    sudo apt-get install php5-mysql php5-curl php5-gd php-pear php5-imagick php5-mcrypt php5-memcache php5-sqlite php5-intl -y
     sudo service apache2 restart
     sudo a2enmod rewrite
     sudo service apache2 restart
