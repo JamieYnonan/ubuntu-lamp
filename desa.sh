@@ -3,36 +3,52 @@
 
 # Entorno Desarrollo PHP MySQL
 # Ubuntu 14.04 LTS
+# Ubuntu 16.04 LTS
 # 
 # @author       Jamie Ynoñan <jamiea31@gmail.com>
 # @link         https://github.com/JamieYnonan
-# @version		0.1.3 - 2015-04-23
+# @version		1.0.0 - 2016-06-15
 
-
-function inicio() {
-    echo -n " ¿Desea iniciar? (s)i|(c)ancelar: "; read resp
-    if [ "$resp" == "s" ]; then
-		nspleep
-        actualizar_ubuntu
-		nspleep
-        instalar_extras
-		nspleep
-        instalar_zip_rar
-		nspleep
-        instalar_entorno_php
-		nspleep
-        instalar_composer
-		nspleep
-        instalar_java
-		nspleep
+function seleccionar_version() {
+    echo -n " ¿Qué versión desea installar? "
+    echo -n " 1. Ubuntu 14.04 LTS "
+    echo -n " 2. Ubuntu 16.04 LTS "
+    echo -n " 3. Exit "; read resp
+    if [ "$resp" == 1 ]; then
+        instalacion_general
+        cd 14.04LTS/
+        chmod +x desa.sh
+        ./desa.sh
         echo -n " Fin! "
         echo " "
         exit;
-    else
-        echo -n " Instalación cacnelada! "
+    elif [ "$resp" == 2 ]; then
+        instalacion_general
+        cd 16.04LTS/
+        chmod +x desa.sh
+        ./desa.sh
+        echo -n " Fin! "
         echo " "
         exit;
+    elif [ "$resp" == 3 ]; then
+        echo -n " Instalación cancelada! "
+        echo -n " "
+        exit;
     fi
+}
+
+function instalacion_general() {
+    nspleep
+    actualizar_ubuntu
+    nspleep
+    instalar_extras
+    nspleep
+    instalar_zip_rar
+    nspleep
+    instalar_phpunit
+    nspleep
+    instalar_composer
+    nspleep
 }
 
 function actualizar_ubuntu() {
@@ -57,39 +73,20 @@ function instalar_zip_rar() {
     echo -n " Instalado! "
 }
 
-function instalar_entorno_php() {
-    echo -n " 4. Instalando apache php mysql "
-    sudo apt-get curl -y
-    sudo apt-get install apache2 -y
-    sudo apt-get install php5 libapache2-mod-php5 -y
-    sudo service apache2 restart
-    echo " "
-    echo -n " Ingresar el nombre del usuario (ubuntu): "; read usuario
-    sudo chown -R $usuario:www-data /var/www/html
-    sudo chmod -R 755 /var/www/html
-    sudo apt-get install mysql-server mysql-client -y
-    sudo apt-get install php5-mysql php5-curl php5-gd php-pear php5-imagick php5-mcrypt php5-memcache php5-sqlite php5-intl -y
-    sudo service apache2 restart
-    sudo a2enmod rewrite
-    sudo service apache2 restart
-    echo " "
-    echo -n " Instalado! "
+function instalar_phpunit() {
+    echo -n " 4. Instalando phpunit "
+    wget https://phar.phpunit.de/phpunit.phar
+    chmod +x phpunit.phar
+    sudo mv phpunit.phar /usr/local/bin/phpunit
 }
 
 function instalar_composer() {
-    echo -n " 4. Instalando apache php mysql "
+    echo -n " 5. Instalando composer "
+    sudo apt-get curl -y
     curl -sS https://getcomposer.org/installer | php
     sudo mv composer.phar /usr/local/bin/composer
     echo " "
     echo -n " Instalado! "
-}
-
-function instalar_java() {
-    echo -n " 4. Instalando apache php mysql "
-    sudo apt-get install icedtea-7-plugin openjdk-7-jre -y
-    sudo apt-get install openjdk-7-jdk -y
-    echo " "
-    echo -n " Instalado!" 
 }
 
 function nspleep() {
@@ -97,4 +94,4 @@ function nspleep() {
 	sleep 2
 }
 
-inicio
+seleccionar_version
