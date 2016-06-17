@@ -82,7 +82,7 @@ function instalar_phpunit() {
 
 function instalar_composer() {
     echo -n " 5. Instalando composer "
-    sudo apt-get curl -y
+    sudo apt-get install curl -y
     curl -sS https://getcomposer.org/installer | php
     sudo mv composer.phar /usr/local/bin/composer
     echo " "
